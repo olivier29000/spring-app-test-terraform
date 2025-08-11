@@ -31,7 +31,7 @@ jobs:
 
       - name: Upload JAR to S3
         run: |
-          aws s3 cp target/spring-app.jar s3://springboot-beanstalk-demo-unique/spring-app.jar
+          aws s3 cp target/app-formateur.jar s3://springboot-beanstalk-demo-unique/spring-app.jar
 
       - name: Create Beanstalk application version
         run: |
