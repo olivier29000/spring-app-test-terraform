@@ -15,6 +15,7 @@ public class Hello {
     public String toto() {
         System.out.println("toto");
         System.out.println("toto");
+        System.out.println("toto");
         return "totoooooooooo";
     }
 }
