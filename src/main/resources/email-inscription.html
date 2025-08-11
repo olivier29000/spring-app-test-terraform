@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+    <style>
+        .email-container {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #111827;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .content {
+            margin: 20px 0;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .footer {
+            background-color: #111827;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Bienvenue sur ndfrais.pro</h1>
+    </div>
+    <div class="content">
+        <img src="cid:logoImage" alt="Logo" style="width:100px; height:auto;">
+        <h3>Cher utilisateur, chère utilisatrice,</h3>
+        <p>Merci pour votre inscription</p>
+        <p>On est ravi de vous compter parmi nous</p>
+        <p>Pour commencer à utiliser ndfrais.pro il ne vous reste plus qu'à cliquer sur ce lien ou le copier-coller dans votre navigateur</p>
+        <a href="${urlConfirmation}" target="_blank">${urlConfirmation}</a>
+        <br>
+        <p>Bonne journée !<br>L'équipe ndfrais</p>
+        <img src="cid:logoImage" alt="Logo" style="width:100px; height:auto;">
+    </div>
+    <div class="footer">
+        <p>ndfrais.pro - Gestion des notes de frais</p>
+    </div>
+</div>
+</body>
+</html>
+
+

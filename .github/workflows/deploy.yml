@@ -1,0 +1,47 @@
+name: CI/CD to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-3
+
+      - name: Upload JAR to S3
+        run: |
+          aws s3 cp target/spring-app.jar s3://springboot-beanstalk-demo-unique/spring-app.jar
+
+      - name: Create Beanstalk application version
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name springboot-app \
+            --version-label "v-${{ github.run_number }}" \
+            --source-bundle S3Bucket="springboot-beanstalk-demo-unique",S3Key="spring-app.jar"
+
+      - name: Deploy to Beanstalk
+        run: |
+          aws elasticbeanstalk update-environment \
+            --environment-name springboot-env \
+            --version-label "v-${{ github.run_number }}"
