@@ -11,6 +11,12 @@ public class Hello {
         return "Hello World";
     }
 
+    @GetMapping("/hello")
+    public String dsvvds() {
+        return "Hello test";
+    }
+
+
     @GetMapping("/toto")
     public String toto() {
         System.out.println("toto");

@@ -50,6 +50,7 @@ public class SecurityConfiguration {
                         .frameOptions(frameOptions -> frameOptions.sameOrigin())
                 )
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/back/hello").permitAll()
                         .requestMatchers("/back/user/register").permitAll()
                         .requestMatchers("/back/user/login").permitAll()
                         .requestMatchers("/back/user/confirm-email/*").permitAll()
