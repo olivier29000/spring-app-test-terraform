@@ -36,7 +36,7 @@ jobs:
       - name: Create Beanstalk application version
         run: |
           aws elasticbeanstalk create-application-version \
-            --application-name springboot-app \
+            --application-name app-formateur \
             --version-label "v-${{ github.run_number }}" \
             --source-bundle S3Bucket="bucket-app-formateur",S3Key="app-formateur.jar"
 
