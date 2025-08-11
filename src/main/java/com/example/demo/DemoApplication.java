@@ -18,18 +18,5 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-	@Bean
-	public FilterRegistrationBean simpleCorsFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		// *** URL below needs to match the Vue client URL and port ***
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://d2nzxme2xyyc4k.cloudfront.net"));
-		config.setAllowedMethods(Collections.singletonList("*"));
-		config.setAllowedHeaders(Collections.singletonList("*"));
-		source.registerCorsConfiguration("/**", config);
-		FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
-		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		return bean;
-	}
+
 }
