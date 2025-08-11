@@ -31,17 +31,17 @@ jobs:
 
       - name: Upload JAR to S3
         run: |
-          aws s3 cp target/app-formateur.jar s3://springboot-beanstalk-demo-unique/spring-app.jar
+          aws s3 cp target/app-formateur.jar s3://bucket-app-formateur/app-formateur.jar
 
       - name: Create Beanstalk application version
         run: |
           aws elasticbeanstalk create-application-version \
             --application-name springboot-app \
             --version-label "v-${{ github.run_number }}" \
-            --source-bundle S3Bucket="springboot-beanstalk-demo-unique",S3Key="spring-app.jar"
+            --source-bundle S3Bucket="bucket-app-formateur",S3Key="app-formateur.jar"
 
       - name: Deploy to Beanstalk
         run: |
           aws elasticbeanstalk update-environment \
-            --environment-name springboot-env \
+            --environment-name env-app-formateur \
             --version-label "v-${{ github.run_number }}"
